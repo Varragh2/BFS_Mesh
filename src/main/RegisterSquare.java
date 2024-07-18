@@ -7,6 +7,15 @@ public class RegisterSquare extends Square {
     //https://stackoverflow.com/questions/8204680/java-regex-email
     Pattern regex = Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b");
 
+    /**
+     * The RegisterSquare class has a method run that executes the basic parameters of RegisterSquare
+     * the run method checks if a player has registered.
+     * Then it asks the player for a first and last name as well as an email.
+     * The email is validated with regex, if an invalid email is entered the user is asked again.
+     * The player gains 100 mesh bucks from registering.
+     * @param player player
+     *
+     */
     @Override
     public void run(Player player) {
         System.out.println("Welcome to Register User.");
@@ -15,25 +24,25 @@ public class RegisterSquare extends Square {
             return;
         }
         System.out.println("What is your first name?");
-        String firstName = input.nextLine();
+        player.firstName = Game.readInput();
 
         System.out.println("What is your last name?");
-        String lastName = input.nextLine();
+        player.lastName = Game.readInput();
 
         String email;
         do {
             System.out.println("What is your email address?");
-            email = input.nextLine();
+            email = Game.readInput();
             if (!regex.asMatchPredicate().test(email)) {
                 System.out.println("Please enter a valid email address.");
             }
         } while (!regex.asMatchPredicate().test(email));
 
+        player.mesh_bucks += 100;
         player.hasRegistered = true;
-        player.firstName = firstName;
-        player.lastName = lastName;
         player.email = email;
 
-        System.out.println("Welcome " + firstName + " " + lastName + ", with email " + email);
+        System.out.println("Welcome " + player.firstName + " " + player.lastName + ", with email " + email);
+        System.out.println("Thanks for registering! You earned 100 mesh bucks");
     }
 }

@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Scanner;
-
 public class Player {
 
     int mesh_bucks;
@@ -9,14 +7,18 @@ public class Player {
     public String firstName;
     public String lastName;
     public String email;
-    Scanner input = new Scanner(System.in);
 
+    /**
+     * Virtually rolls a 6 sided die once.
+     * @return number that was rolled
+     */
     public int rollDice() {
         System.out.println("Roll the die!(y/n): ");
-        input.nextLine();
+        Game.readInput();
         int result = (int) (Math.random() * 10 % 6 + 1);
         System.out.println("You rolled a " + result);
 
         return result;
     }
+
 }

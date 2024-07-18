@@ -16,10 +16,13 @@ public class Game {
         }
     }
 
+    /**
+     * The start of the game, this is where everything happens.
+     */
     public static void start() {
         System.out.println("Hello, welcome to BFS_MESH_GAME!");
         System.out.println("Do you want to play?(y/n): ");
-        if (input.nextLine().toLowerCase().startsWith("y")) {
+        if (Game.readInput().toLowerCase().startsWith("y")) {
             System.out.println("Lets play!");
         }
         else {
@@ -34,5 +37,22 @@ public class Game {
     }
     public static Square move(int pos, int num) {
         return squares.get( (pos + num) % squares.size() );
+    }
+
+    public static String readInput() {
+        String result = input.nextLine();
+        if (result.equalsIgnoreCase("exit") ) {
+            Game.endGame();
+        }
+        return result;
+    }
+
+    /**
+     * Ends the game and the program with exit code 0
+     */
+    private static void endGame() {
+        System.out.println("The game is over.");
+        System.exit(0);
+
     }
 }
