@@ -4,79 +4,100 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef7ee155-c935-4e7b-8c0a-1cb2481c8659" name="Changes" comment="Refactoring tests and adding Javadocs">
-      <change afterPath="$PROJECT_DIR$/src/main/AcquireHardwareSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/InstallEndUserEquipmentSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Player.java" afterDir="false" />
+    <list default="true" id="559e6867-e777-4604-8c86-3eef185b8a37" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/AcquireHardwareSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/ConnectToNetworkSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/InstallEndUserEquipmentSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/ReferFriendSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/RegisterSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/Square.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasnolan/GameTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasnolan/PlayerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasnolan/RegisterSquareTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BFS_MESH_GRADLE" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BFS_MESH_GRADLE" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
-  <component name="ProjectId" id="2jNv7MYGZUQep4eJMwrnqkb1OjJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2jREqxW6EgaFpmoIzp4InKufm4N" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;Gradle.BFS_MESH_GRADLE [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BFS_MESH_GRADLE [build].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.appearance&quot;
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Thomas Nolan/IdeaProjects/BFS_MESH_GRADLE/src/test/java/com/thomasnolan&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="test" />
-      <recent name="" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="main" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Thomas Nolan\IdeaProjects\BFS_MESH_GRADLE\src\test\java\com\thomasnolan" />
+      <recent name="C:\Users\Thomas Nolan\IdeaProjects\BFS_MESH_GRADLE\src\main\java\com\thomasnolan" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Main" />
-      <module name="BFS_MESH" />
+      <option name="MAIN_CLASS_NAME" value="com.thomasnolan.Main" />
+      <module name="BFS_MESH_GRADLE.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.*" />
+          <option name="PATTERN" value="com.thomasnolan.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -84,119 +105,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in BFS_MESH" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BFS_MESH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BFS_MESH" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.PlayerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.testRollDiceOnceInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BFS_MESH" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.PlayerTest" />
-      <option name="METHOD_NAME" value="testRollDiceOnceInvalid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.testRollDiceOnceValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BFS_MESH" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.PlayerTest" />
-      <option name="METHOD_NAME" value="testRollDiceOnceValid" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="BFS_MESH_GRADLE [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PlayerTest" />
-        <item itemvalue="JUnit.PlayerTest.testRollDiceOnceValid" />
-        <item itemvalue="JUnit.PlayerTest.testRollDiceOnceInvalid" />
-        <item itemvalue="JUnit.All in BFS_MESH" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.BFS_MESH_GRADLE [build]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ef7ee155-c935-4e7b-8c0a-1cb2481c8659" name="Changes" comment="" />
-      <created>1721240185808</created>
+      <changelist id="559e6867-e777-4604-8c86-3eef185b8a37" name="Changes" comment="" />
+      <created>1721341685064</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1721240185808</updated>
+      <updated>1721341685064</updated>
     </task>
-    <task id="LOCAL-00001" summary="Starting the project">
-      <created>1721240360745</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1721240360745</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Setting up the basic game and RegisterSquare.">
-      <created>1721256465285</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1721256465285</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Refactoring tests and adding Javadocs">
-      <created>1721269206353</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1721269206353</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Starting the project" />
-    <MESSAGE value="Setting up the basic game and RegisterSquare." />
-    <MESSAGE value="Refactoring tests and adding Javadocs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring tests and adding Javadocs" />
   </component>
 </project>
