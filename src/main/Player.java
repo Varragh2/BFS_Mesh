@@ -8,6 +8,8 @@ public class Player {
     public String lastName;
     public String email;
 
+    public int hardware = 0;
+
     /**
      * Virtually rolls a 6 sided die once.
      * @return number that was rolled
