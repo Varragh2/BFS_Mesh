@@ -1,6 +1,8 @@
 package com.thomasnolan;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Game {
@@ -11,39 +13,47 @@ public class Game {
     static Square startingSquare = new Square() {
         @Override
         public void run(Player player) {
-            System.out.println("Welcome to beginning square.");
-            System.out.println("Pass go collect 50 mesh bucks!");
+            printMessage("beginning_square_prompt", player.mesh_bucks);
             player.mesh_bucks += 50;
-            System.out.println("You have " + player.mesh_bucks + " mesh bucks.");
         }
     };
 
+    /*
+     * Setting up the board
+     */
     static {
-        squares = new ArrayList<>(12);
+        squares = new ArrayList<>(15);
         squares.add(startingSquare);
         squares.add(new RegisterSquare());
-        //squares.add(new Square());
+        squares.add(new Square());
         squares.add(new AcquireHardwareSquare());
+        squares.add(new Square());
         squares.add(new InstallEndUserEquipmentSquare());
-        //squares.add(new Square());
-        //squares.add(new Square());
+        squares.add(new ReferFriendSquare());
+        squares.add(new Square());
+        squares.add(new Square());
         squares.add(new ConnectToNetworkSquare());
         squares.add(new ConnectToNetworkSquare());
-        //squares.add(new Square());
+        squares.add(new Square());
         squares.add(new ConnectToNetworkSquare());
+        squares.add(new AcquireHardwareSquare());
+
     }
 
     /**
      * The start of the game, this is where everything happens.
      */
     public static void start() {
-        System.out.println("Hello, welcome to BFS_MESH_GAME!");
-        System.out.println("Do you want to play?(y/n): ");
+
+        currentLocale = setCurrentLocale(new String[]{"en", "US"});
+
+        printMessage("greeting");
+        printMessage("init_prompt");
         if (Game.readYesNo()) {
-            System.out.println("Lets play!");
+            printMessage("init_prompt1");
         }
         else {
-            System.out.println("See you next time.");
+            printMessage("leave_prompt");
             return;
         }
         squares.get(0).run(player);
@@ -51,7 +61,7 @@ public class Game {
             Square square = move(player.position, player.rollDice());
             player.position = squares.indexOf(square);
             square.run(player);
-            System.out.println("Square number " + squares.indexOf(square));
+            printMessage("square_num", squares.indexOf(square));
         } while (true);
     }
 
@@ -97,7 +107,78 @@ public class Game {
      * Ends the game and the program with exit code 0
      */
     public static void endGame() {
-        System.out.println("The game is over.");
+        printMessage("end_game");
         System.exit(0);
     }
+
+    private static Locale currentLocale;
+    //private static ResourceBundle messages;
+
+    /**
+     * The start of the game, this is where everything happens.
+     */
+    public static void start(String[] args) {
+
+        // Set current locale
+        currentLocale = setCurrentLocale(args);
+
+        printMessage("greeting");
+        printMessage("init_prompt");
+
+        if (Game.readYesNo()) {
+            printMessage("init_prompt1");
+        }
+        else {
+            printMessage("leave_prompt");
+            return;
+        }
+
+        Square starting_square = move(0, player.rollDice());
+        starting_square.run(new Player());
+        printMessage("square_num", squares.indexOf(starting_square));
+    }
+
+    /**
+     * Sets the player's locale for the current game.
+     * @param  args  command line arguments including language and country
+     * @returns Locale returns the current player locale
+     * @see {@link https://docs.oracle.com/en/java/javase/22/intl/internationalization-overview.html}
+     */
+    public static Locale setCurrentLocale(String[] args) {
+
+        // Set init locale
+        String language;
+        String country;
+
+        if (args.length != 2) {
+            language = "en";
+            country = "US";
+        } else {
+            language = args[0];
+            country = args[1];
+        }
+
+        // builder
+        return new Locale.Builder()
+                .setLanguage(language)
+                .setRegion(country)
+                .build();
+    }
+
+    /**
+     * A convenience method to print to the standard output the message
+     * @param key the localization key
+     */
+    public static void printMessage(String key, Object... args) {
+        System.out.printf(getMessage(key) + "%n", args);
+    }
+    /**
+     * Returns the localized resources for the current game.
+     * @return ResourceBundle returns resources for the current locale
+     */
+    public static String getMessage (String key) {
+        ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
+        return bundle.getString(key);
+    }
+
 }

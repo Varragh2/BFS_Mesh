@@ -1,5 +1,6 @@
 package com.thomasnolan;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,7 +10,8 @@ import static java.lang.System.in;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-/*
+
+    @Disabled
     @Test
     void testRollDiceOnceValid() {
 
@@ -26,6 +28,8 @@ class PlayerTest {
 
 
     }
+
+    @Disabled
     @Test
     void testRollDiceOnceInvalid() {
 
@@ -44,6 +48,7 @@ class PlayerTest {
 
     }
 
+    @Disabled
     @Test
     void testRollDiceTenValid() {
 
@@ -61,6 +66,4 @@ class PlayerTest {
         System.setIn(sysInBackup);
 
     }
-
- */
 }

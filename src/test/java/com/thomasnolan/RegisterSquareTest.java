@@ -1,5 +1,6 @@
 package com.thomasnolan;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -8,7 +9,8 @@ import java.io.InputStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegisterSquareTest {
-/*
+
+    @Disabled
     @Test
     void testRunValid() {
 
@@ -32,6 +34,7 @@ class RegisterSquareTest {
         registerSquare.run(player);
 
     }
+    @Disabled
     @Test
     void testRunInvalidEmail() {
 
@@ -56,5 +59,5 @@ class RegisterSquareTest {
 
     }
 
- */
+
 }

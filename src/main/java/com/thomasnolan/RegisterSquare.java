@@ -18,23 +18,26 @@ public class RegisterSquare extends Square {
      */
     @Override
     public void run(Player player) {
-        System.out.println("Welcome to Register User.");
-        if (player.hasRegistered) {
-            System.out.println("You have already registered.");
+        Game.printMessage("register_user_prompt");
+        if (!Game.readYesNo()) {
             return;
         }
-        System.out.println("What is your first name?");
+        if (player.hasRegistered) {
+            Game.printMessage("register_user_fail");
+            return;
+        }
+        Game.printMessage("register_user_first_name");
         player.firstName = Game.readInput();
 
-        System.out.println("What is your last name?");
+        Game.printMessage("register_user_last_name");
         player.lastName = Game.readInput();
 
         String email;
         do {
-            System.out.println("What is your email address?");
+            Game.printMessage("register_user_email");
             email = Game.readInput();
             if (!regex.asMatchPredicate().test(email)) {
-                System.out.println("Please enter a valid email address.");
+                Game.printMessage("register_user_email_fail");
             }
         } while (!regex.asMatchPredicate().test(email));
 
@@ -42,7 +45,6 @@ public class RegisterSquare extends Square {
         player.hasRegistered = true;
         player.email = email;
 
-        System.out.println("Welcome " + player.firstName + " " + player.lastName + ", with email " + email);
-        System.out.println("Thanks for registering! You earned 100 mesh bucks");
+        Game.printMessage("register_user_success", player.firstName, player.lastName, player.email);
     }
 }

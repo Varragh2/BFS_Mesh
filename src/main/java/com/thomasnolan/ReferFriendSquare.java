@@ -16,23 +16,23 @@ public class ReferFriendSquare extends Square {
 
     @Override
     public void run(Player player) {
-        System.out.println("Welcome to Refer a Friend.\nDo you want to refer a friend? (y/n)");
+        Game.printMessage("refer_friend_prompt");
         if (!Game.readYesNo()) {
-            System.out.println("That's too bad.");
+            Game.printMessage("leave_prompt");
             return;
         }
-        System.out.println("What is your friend's first name?");
+        Game.printMessage("refer_friend_first_name");
         Game.readInput();
 
-        System.out.println("What is your friend's last name?");
+        Game.printMessage("refer_friend_last_name");
         Game.readInput();
 
         String friendEmail;
         do {
-            System.out.println("What is your friend's email address?");
+            Game.printMessage("refer_friend_email");
             friendEmail = Game.readInput();
             if (!regex.asMatchPredicate().test(friendEmail)) {
-                System.out.println("Please enter a valid email address.");
+                Game.printMessage("refer_friend_email_fail");
             }
         } while (!regex.asMatchPredicate().test(friendEmail));
 
@@ -50,7 +50,6 @@ public class ReferFriendSquare extends Square {
 
         player.mesh_bucks += 100;
 
-        System.out.println("Welcome " + player.firstName + " " + player.lastName + ", with email " + email);
-        System.out.println("Thanks for registering your friend! You earned 100 mesh bucks");
+        Game.printMessage("refer_friend_success", player.firstName, player.lastName, player.email);
     }
 }
