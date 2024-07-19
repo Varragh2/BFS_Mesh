@@ -1,5 +1,8 @@
 package com.thomasnolan;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -13,15 +16,24 @@ public class Game {
     static Square startingSquare = new Square() {
         @Override
         public void run(Player player) {
-            printMessage("beginning_square_prompt", player.mesh_bucks);
             player.mesh_bucks += 50;
+            printMessage("beginning_square_prompt", player.mesh_bucks);
         }
     };
+
+    static FileWriter fileWriter;
 
     /*
      * Setting up the board
      */
     static {
+        try {
+            fileWriter = new FileWriter("src/main/resources/BFS_MESH_log_" + System.currentTimeMillis() + ".txt", true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         squares = new ArrayList<>(15);
         squares.add(startingSquare);
         squares.add(new RegisterSquare());
@@ -40,12 +52,14 @@ public class Game {
 
     }
 
+    public Game() throws FileNotFoundException {
+    }
+
     /**
      * The start of the game, this is where everything happens.
      */
     public static void start() {
-
-        currentLocale = setCurrentLocale(new String[]{"en", "US"});
+        currentLocale = setCurrentLocale(new String[]{"es", "ES"});
 
         printMessage("greeting");
         printMessage("init_prompt");
@@ -87,7 +101,7 @@ public class Game {
      */
     public static boolean readYesNo() {
         String answer = readInput();
-        return answer.toLowerCase().startsWith("y");
+        return answer.toLowerCase().startsWith(getMessage("read_yes_no"));
     }
 
     /**
@@ -97,7 +111,7 @@ public class Game {
      */
     public static String readInput() {
         String result = input.nextLine();
-        if (result.equalsIgnoreCase("exit") ) {
+        if (result.equalsIgnoreCase(getMessage("exit"))) {
             Game.endGame();
         }
         return result;
@@ -108,6 +122,11 @@ public class Game {
      */
     public static void endGame() {
         printMessage("end_game");
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         System.exit(0);
     }
 
@@ -167,16 +186,24 @@ public class Game {
 
     /**
      * A convenience method to print to the standard output the message
+     * Also writes all output to a log file.
+     *
      * @param key the localization key
      */
     public static void printMessage(String key, Object... args) {
+        try {
+            fileWriter.append(String.format(getMessage(key) + "%n", args));
+            fileWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         System.out.printf(getMessage(key) + "%n", args);
     }
     /**
      * Returns the localized resources for the current game.
      * @return ResourceBundle returns resources for the current locale
      */
-    public static String getMessage (String key) {
+    public static String getMessage(String key) {
         ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
         return bundle.getString(key);
     }

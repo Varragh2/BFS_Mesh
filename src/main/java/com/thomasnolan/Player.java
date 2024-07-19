@@ -16,10 +16,10 @@ public class Player {
      * @return number that was rolled
      */
     public int rollDice() {
-        System.out.println("Roll the die!(y/n): ");
+        Game.printMessage("player_roll_dice");
         Game.readInput();
         int result = (int) (Math.random() * 10 % 6 + 1);
-        System.out.println("You rolled a " + result);
+        Game.printMessage("player_roll_dice_success", result);
 
         return result;
     }
