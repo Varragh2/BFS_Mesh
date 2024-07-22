@@ -28,7 +28,7 @@ public class Game {
      */
     static {
         try {
-            fileWriter = new FileWriter("src/main/resources/BFS_MESH_log_" + System.currentTimeMillis() + ".txt", true);
+            fileWriter = new FileWriter("./logs/BFS_MESH_log_" + System.currentTimeMillis() + ".txt", true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -37,6 +37,7 @@ public class Game {
         squares = new ArrayList<>(15);
         squares.add(startingSquare);
         squares.add(new RegisterSquare());
+        squares.add(new ReferFriendSquare());
         squares.add(new Square());
         squares.add(new AcquireHardwareSquare());
         squares.add(new Square());
@@ -59,7 +60,7 @@ public class Game {
      * The start of the game, this is where everything happens.
      */
     public static void start() {
-        currentLocale = setCurrentLocale(new String[]{"es", "ES"});
+        currentLocale = setCurrentLocale(new String[]{"en", "US"});
 
         printMessage("greeting");
         printMessage("init_prompt");
@@ -70,7 +71,7 @@ public class Game {
             printMessage("leave_prompt");
             return;
         }
-        squares.get(0).run(player);
+        squares.getFirst().run(player);
         do {
             Square square = move(player.position, player.rollDice());
             player.position = squares.indexOf(square);
@@ -161,7 +162,7 @@ public class Game {
      * Sets the player's locale for the current game.
      * @param  args  command line arguments including language and country
      * @returns Locale returns the current player locale
-     * @see {@link https://docs.oracle.com/en/java/javase/22/intl/internationalization-overview.html}
+     * @see {@link <a href="https://docs.oracle.com/en/java/javase/22/intl/internationalization-overview.html">...</a>}
      */
     public static Locale setCurrentLocale(String[] args) {
 

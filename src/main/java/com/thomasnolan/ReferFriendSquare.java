@@ -4,6 +4,7 @@ import org.simplejavamail.api.email.Email;
 import org.simplejavamail.api.mailer.Mailer;
 import org.simplejavamail.email.EmailBuilder;
 import org.simplejavamail.mailer.MailerBuilder;
+import com.thomasnolan.SendEmailSSL;
 
 import java.util.regex.Pattern;
 
@@ -36,16 +37,28 @@ public class ReferFriendSquare extends Square {
             }
         } while (!regex.asMatchPredicate().test(friendEmail));
 
-        Email email = EmailBuilder.startingBlank()
-                .to("Thomas Nolan", "nolant190@gmail.com")
-                .withSubject("hey")
-                .withPlainText("Please this email works!")
-                .buildEmail();
+        //Send Email!!
+        String subject = "Test Email from " + System.currentTimeMillis();
 
-        Mailer mailer = MailerBuilder
-                .buildMailer();
+        SendEmailSSL emailSender = new SendEmailSSL();
+        /**
+         * @TODO
+         * make a localized subject and body
+         */
+        Boolean result = emailSender.send(friendEmail,subject, "This is a test!");
 
-        mailer.sendMail(email);
+        // SendEmailSSL.send();
+
+        // Email email = EmailBuilder.startingBlank()
+        //         .to("Thomas Nolan", "nolant190@gmail.com")
+        //         .withSubject("hey")
+        //         .withPlainText("Please this email works!")
+        //         .buildEmail();
+
+        // Mailer mailer = MailerBuilder
+        //         .buildMailer();
+
+        // mailer.sendMail(email);
 
 
         player.mesh_bucks += 100;

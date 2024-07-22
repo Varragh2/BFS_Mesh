@@ -1,7 +1,0 @@
-¡Oye, echa un vistazo a BFS_MESH_GAME!
-¿Quieres jugar? (s/n)
-¡Vamos a jugar!
-Bienvenido a la casilla inicial.
-¡Pase, vaya a recolectar 50 dólares de malla!
-Tienes 50 dólares de malla.
-¡Tira el dado! (s/n):
