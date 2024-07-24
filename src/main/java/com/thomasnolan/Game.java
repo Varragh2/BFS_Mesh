@@ -60,7 +60,11 @@ public class Game {
      * The start of the game, this is where everything happens.
      */
     public static void start() {
-        currentLocale = setCurrentLocale(new String[]{"en", "US"});
+
+        printMessage("locale");
+        if (readInput().equalsIgnoreCase("en")) {
+            currentLocale = setCurrentLocale(new String[]{"en", "US"});
+        }
 
         printMessage("greeting");
         printMessage("init_prompt");
@@ -162,7 +166,7 @@ public class Game {
      * Sets the player's locale for the current game.
      * @param  args  command line arguments including language and country
      * @returns Locale returns the current player locale
-     * @see {@link <a href="https://docs.oracle.com/en/java/javase/22/intl/internationalization-overview.html">...</a>}
+     * @see {@link <a href="https://docs.oracle.com/en/java/javase/22/intl/internationalization-overview.html"> </a>}
      */
     public static Locale setCurrentLocale(String[] args) {
 

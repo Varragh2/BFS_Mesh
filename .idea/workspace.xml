@@ -4,24 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="559e6867-e777-4604-8c86-3eef185b8a37" name="Changes" comment="Adding localization">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/SendEmailSSL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/MessagesBundle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/MessagesBundle_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/credential.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/email.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasnolan/ReferFriendSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/thomasnolan/SendEmailSSLTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="559e6867-e777-4604-8c86-3eef185b8a37" name="Changes" comment="The program now sends an email whenever you refer a friend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasnolan/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/thomasnolan/ReferFriendSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/thomasnolan/ReferFriendSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/BFS_MESH_log_1721431777330.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MessagesBundle_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MessagesBundle_en_US.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/MessagesBundle_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/MessagesBundle_en.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,32 +76,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.BFS_MESH_GRADLE [:Main.main()].executor": "Debug",
-    "Gradle.BFS_MESH_GRADLE [build].executor": "Run",
-    "Gradle.BFS_MESH_GRADLE [run].executor": "Run",
-    "Gradle.BFS_MESH_GRADLE [test].executor": "Run",
-    "Gradle.GameTest.move.executor": "Run",
-    "Gradle.PlayerTest.executor": "Run",
-    "Gradle.PlayerTest.testRollDiceOnceInvalid.executor": "Run",
-    "Gradle.PlayerTest.testRollDiceTenValid.executor": "Run",
-    "Gradle.RegisterSquareTest.executor": "Run",
-    "Gradle.RegisterSquareTest.testRunInvalidEmail.executor": "Run",
-    "Gradle.RegisterSquareTest.testRunValid.executor": "Run",
-    "Gradle.SendEmailSSLTest.sendSSLEmail.executor": "Run",
-    "Gradle.Upgrade Gradle wrapper.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Thomas Nolan/IdeaProjects/BFS_MESH_GRADLE/src/test/java/com/thomasnolan",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.BFS_MESH_GRADLE [:Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.BFS_MESH_GRADLE [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BFS_MESH_GRADLE [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.BFS_MESH_GRADLE [test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GameTest.move.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PlayerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PlayerTest.testRollDiceOnceInvalid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PlayerTest.testRollDiceTenValid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RegisterSquareTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RegisterSquareTest.testRunInvalidEmail.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RegisterSquareTest.testRunValid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SendEmailSSLTest.sendSSLEmail.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Upgrade Gradle wrapper.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Thomas Nolan/IdeaProjects/BFS_MESH_GRADLE/src/test/java/com/thomasnolan&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Thomas Nolan\IdeaProjects\BFS_MESH_GRADLE\src\test\java\com\thomasnolan" />
@@ -285,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721360139407</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="The program now sends an email whenever you refer a friend">
+      <option name="closed" value="true" />
+      <created>1721676695050</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721676695050</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,6 +310,7 @@
     <MESSAGE value="Refactored the project to include Gradle" />
     <MESSAGE value="Still adding Gradle" />
     <MESSAGE value="Adding localization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding localization" />
+    <MESSAGE value="The program now sends an email whenever you refer a friend" />
+    <option name="LAST_COMMIT_MESSAGE" value="The program now sends an email whenever you refer a friend" />
   </component>
 </project>
