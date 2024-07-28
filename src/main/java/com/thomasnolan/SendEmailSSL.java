@@ -6,12 +6,12 @@ import jakarta.mail.internet.MimeMessage;
 
 import java.io.IOException;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-//import com.sun.jdi.connect.Transport;
-
+/**
+ * Sends email from game to referred friend via SSL
+ */
 public class SendEmailSSL {
 
     public Properties props = new Properties();
@@ -20,8 +20,8 @@ public class SendEmailSSL {
     private static String EMAIL_PROPERTIES = "email.properties";
     private static String CREDENTIAL_PROPERTIES = "credential.properties";
 
-    /*
-     * 
+    /**
+     * Reads email and credential settings from resources and initializes SSL connection
      */
     public SendEmailSSL() {
 
@@ -36,7 +36,6 @@ public class SendEmailSSL {
         
         try (InputStream resourceStream = loader.getResourceAsStream(EMAIL_PROPERTIES)){
             props.load(resourceStream);    
-            System.out.println(props);
         }
         catch(IOException e) {
             System.out.println(e);
@@ -55,11 +54,17 @@ public class SendEmailSSL {
         }    
     }
 
+    /**
+     * Sends email via SSL connection to recipients
+     * @param recipients the addresses to receive the email
+     * @param subject the localized email subject
+     * @param body the localixed email body
+     * @return true if successful, false otherwise
+     */
     public Boolean send(String recipients, String subject, String body) {
 
         final String username = credentialProps.getProperty("username");
         final String password = credentialProps.getProperty("password");
-        System.out.println("Set username and password");
         
         Session session = Session.getInstance(props,
                 new Authenticator() {
@@ -70,8 +75,6 @@ public class SendEmailSSL {
 
         try {
 
-            System.out.println("After authentication");
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(
@@ -81,7 +84,6 @@ public class SendEmailSSL {
             message.setSubject(subject);
             message.setText(body);
 
-            System.out.println("Before email sent");
             Transport.send(message);
 
             System.out.println("Sent message successfully....");            

@@ -1,7 +1,6 @@
 package com.thomasnolan;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.thomasnolan.SendEmailSSL;
@@ -31,6 +30,7 @@ class SendEmailSSLTest {
     @Test
     void sendSSLEmail() {
 
+        // Test
         String recipients = "nolant190@gmail.com, shea.nolan@gmail.com";
         //String recipients = "shea.nolan@gmail.com";
         String subject = "Test Email from " + System.currentTimeMillis();

@@ -1,11 +1,16 @@
 package com.thomasnolan;
 
-import java.util.regex.Pattern;
-
+/**
+ * New players regsiter details
+ */
 public class RegisterSquare extends Square {
 
-    //https://stackoverflow.com/questions/8204680/java-regex-email
-    Pattern regex = Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b");
+    /**
+     * {@inheritDoc}
+     */
+    public RegisterSquare(GameIOHandler io){
+        super(io);
+    }
 
     /**
      * The RegisterSquare class has a method run that executes the basic parameters of RegisterSquare
@@ -17,34 +22,48 @@ public class RegisterSquare extends Square {
      *
      */
     @Override
-    public void run(Player player) {
-        Game.printMessage("register_user_prompt");
-        if (!Game.readYesNo()) {
-            return;
+    public boolean run(Player player) {
+        boolean endGame = false;
+        
+        super.io.printLine("register_user_prompt");
+        if (!super.io.readYesNo()) {
+            return false;
         }
         if (player.hasRegistered) {
-            Game.printMessage("register_user_fail");
-            return;
+            super.io.printLine("register_user_fail");
+            return false;
         }
-        Game.printMessage("register_user_first_name");
-        player.firstName = Game.readInput();
+        super.io.printLine("register_user_first_name");
+        player.firstName = super.io.readInput(endGame);
+        if (endGame) {
+            return false;
+        }
 
-        Game.printMessage("register_user_last_name");
-        player.lastName = Game.readInput();
+        super.io.printLine("register_user_last_name");
+        player.lastName = super.io.readInput(endGame);
+        if (endGame) {
+            return false;
+        }
 
         String email;
-        do {
-            Game.printMessage("register_user_email");
-            email = Game.readInput();
-            if (!regex.asMatchPredicate().test(email)) {
-                Game.printMessage("register_user_email_fail");
-            }
-        } while (!regex.asMatchPredicate().test(email));
+
+        super.io.printLine("register_user_email");
+        email = super.io.readInput(endGame);
+        if (endGame) {
+            return false;
+        }
+        // Validate email
+        if (!super.isValidEmail(email)) {
+            super.io.printLine("register_user_email_fail");
+            return false;
+        }
 
         player.mesh_bucks += 100;
         player.hasRegistered = true;
         player.email = email;
 
-        Game.printMessage("register_user_success", player.firstName, player.lastName, player.email);
+        super.io.printLine("register_user_success", player.firstName, player.lastName, player.email);
+
+        return true;
     }
 }

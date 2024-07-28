@@ -1,63 +1,55 @@
 package com.thomasnolan;
 
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RegisterSquareTest {
 
-    @Disabled
+    private final InputStream standardIn = System.in;
+    private final PrintStream standardOut = System.out;    
+
+    @AfterEach
+    public void tearDown() {
+        System.setIn(standardIn);
+        System.setOut(standardOut);
+    }    
+
+
     @Test
-    void testRunValid() {
+    void validRegistration() {
 
-        //https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream("Thomas\nNolan\nnolant190@gmail.1111111111com\nnolant190@gmail.com\no".getBytes());
-        System.setIn(in);
-        // do your thing
-        RegisterSquare registerSquare = new RegisterSquare();
+        String data = "4\nyes\nTest\nUser\ntest@example.com\n";
+        GameIOHandler io = new GameIOHandler(
+            new ByteArrayInputStream(data.getBytes()),
+            new ByteArrayOutputStream()
+        );
+
+        // LocalizedInputReader input = new LocalizedInputReader(
+        //     new Scanner(new ByteArrayInputStream(data.getBytes())), 
+        //     Locale.getDefault()
+        // );
+
+        // LocalizedPrintStream output = new LocalizedPrintStream(
+        //     new ByteArrayOutputStream(), 
+        //     false, 
+        //    Locale.getDefault());        
+
+        RegisterSquare registerSquare = new RegisterSquare(io);
         Player player = new Player();
-        registerSquare.run(player);
 
-        assertEquals(player.firstName, "Thomas");
-        assertEquals(player.lastName, "Nolan");
-        assertEquals(player.email, "nolant190@gmail.com");
+        boolean result = registerSquare.run(player);
 
-
-        // optionally, reset System.in to its original
-        System.setIn(sysInBackup);
-
-        registerSquare.run(player);
+        assertEquals("Test", player.firstName);
+        assertEquals("User", player.lastName);
+        assertEquals("test@example.com", player.email);
 
     }
-    @Disabled
-    @Test
-    void testRunInvalidEmail() {
-
-        //https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream("Thomas\nNolan\nnolant190@gmail.1111111111com\nexit".getBytes());
-        System.setIn(in);
-        // do your thing
-        RegisterSquare registerSquare = new RegisterSquare();
-        Player player = new Player();
-        registerSquare.run(player);
-
-        assertEquals(player.firstName, "Thomas");
-        assertEquals(player.lastName, "Nolan");
-        assertNull(player.email);
-
-
-        // optionally, reset System.in to its original
-        System.setIn(sysInBackup);
-
-        registerSquare.run(player);
-
-    }
-
 
 }

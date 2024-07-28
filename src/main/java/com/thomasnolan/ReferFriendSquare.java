@@ -1,68 +1,58 @@
 package com.thomasnolan;
 
-import org.simplejavamail.api.email.Email;
-import org.simplejavamail.api.mailer.Mailer;
-import org.simplejavamail.email.EmailBuilder;
-import org.simplejavamail.mailer.MailerBuilder;
-import com.thomasnolan.SendEmailSSL;
-
-import java.util.regex.Pattern;
-
-
+/**
+ * Enables player to refer a friend in order to gain more mesh bucks
+ */
 public class ReferFriendSquare extends Square {
 
-    //https://stackoverflow.com/questions/8204680/java-regex-email
-    Pattern regex = Pattern.compile("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b");
+    /**
+     * {@inheritDoc}
+     */
+    public ReferFriendSquare(GameIOHandler io){
+        super(io);
+    }
 
-
+    /**
+     * Prompts player to see if they want to refer a friend and asks for friend name and email.
+     * Sends email to friend welcoming them to the community.
+     * Adds 100 mesh bucks to player account.
+     */
     @Override
-    public void run(Player player) {
-        Game.printMessage("refer_friend_prompt");
-        if (!Game.readYesNo()) {
-            Game.printMessage("leave_prompt");
-            return;
-        }
-        Game.printMessage("refer_friend_first_name");
-        Game.readInput();
-
-        Game.printMessage("refer_friend_last_name");
-        Game.readInput();
-
-        String friendEmail;
-        do {
-            Game.printMessage("refer_friend_email");
-            friendEmail = Game.readInput();
-            if (!regex.asMatchPredicate().test(friendEmail)) {
-                Game.printMessage("refer_friend_email_fail");
-            }
-        } while (!regex.asMatchPredicate().test(friendEmail));
-
-        //Send Email!!
-        String subject = "Test Email from " + System.currentTimeMillis();
-
-        SendEmailSSL emailSender = new SendEmailSSL();
-        /**
-         * @TODO
-         * make a localized subject and body
-         */
-        Boolean result = emailSender.send(friendEmail,subject, "This is a test!");
-
-        // SendEmailSSL.send();
-
-        // Email email = EmailBuilder.startingBlank()
-        //         .to("Thomas Nolan", "nolant190@gmail.com")
-        //         .withSubject("hey")
-        //         .withPlainText("Please this email works!")
-        //         .buildEmail();
-
-        // Mailer mailer = MailerBuilder
-        //         .buildMailer();
-
-        // mailer.sendMail(email);
-
+    public boolean run(Player player) {
+        
+        boolean endGame = false;
 
         player.mesh_bucks += 100;
+        
+        super.io.printLine("refer_friend_prompt");
+        if (!super.io.readYesNo()) {
+            super.io.printLine("leave_prompt");
+            return false;
+        }
+        super.io.printLine("refer_friend_first_name");
+        String friendFirstName = super.io.readInput(endGame);
 
-        Game.printMessage("refer_friend_success", player.firstName, player.lastName, player.email);
+        super.io.printLine("refer_friend_last_name");
+        String friendLastName = super.io.readInput(endGame);
+
+        String friendEmail;
+        super.io.printLine("refer_friend_email");
+        friendEmail = super.io.readInput(endGame);
+
+        // Validate email
+        if (!super.isValidEmail(friendEmail)) {
+            super.io.printLine("refer_friend_email_fail");
+        }
+
+        //Send Email!!
+        String subject = super.io.getString("welcome_email_subject");
+        String body = super.io.getString("welcome_email_body", friendFirstName, friendLastName, player.firstName, player.lastName);
+
+        SendEmailSSL emailSender = new SendEmailSSL();
+        Boolean result = emailSender.send(friendEmail, subject, body);
+
+        super.io.printLine("refer_friend_success", friendFirstName, friendLastName, friendEmail);
+
+        return true;
     }
 }

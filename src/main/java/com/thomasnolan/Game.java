@@ -1,86 +1,102 @@
 package com.thomasnolan;
 
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Scanner;
 
+/**
+ * Initializes game and manages all game play
+ */
 public class Game {
 
-    public static ArrayList<Square> squares;
-    static Player player = new Player();
-    static Scanner input = new Scanner(System.in);
-    static Square startingSquare = new Square() {
-        @Override
-        public void run(Player player) {
-            player.mesh_bucks += 50;
-            printMessage("beginning_square_prompt", player.mesh_bucks);
-        }
-    };
-
-    static FileWriter fileWriter;
-
-    /*
-     * Setting up the board
+    /**
+     * List of game squares
      */
-    static {
-        try {
-            fileWriter = new FileWriter("./logs/BFS_MESH_log_" + System.currentTimeMillis() + ".txt", true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public ArrayList<Square> squares;
 
+    /**
+     * Game player
+     */
+    public static Player player;
 
-        squares = new ArrayList<>(15);
+    private GameIOHandler io;
+    private Square startingSquare;
+   
+
+    /**
+     * Constructor for game
+     * @param io handles all user input and output during game play
+     */
+    public Game(GameIOHandler io){
+        
+        this.io = io;
+
+        // Setup starting square
+        startingSquare = new Square(io) {
+            @Override
+            public boolean run(Player player) {
+                player.mesh_bucks += 50;
+                io.printLine("beginning_square_prompt", player.mesh_bucks);
+                return true;
+            }
+        };
+
+        // Setup board
+        squares = new ArrayList<>();
         squares.add(startingSquare);
-        squares.add(new RegisterSquare());
-        squares.add(new ReferFriendSquare());
-        squares.add(new Square());
-        squares.add(new AcquireHardwareSquare());
-        squares.add(new Square());
-        squares.add(new InstallEndUserEquipmentSquare());
-        squares.add(new ReferFriendSquare());
-        squares.add(new Square());
-        squares.add(new Square());
-        squares.add(new ConnectToNetworkSquare());
-        squares.add(new ConnectToNetworkSquare());
-        squares.add(new Square());
-        squares.add(new ConnectToNetworkSquare());
-        squares.add(new AcquireHardwareSquare());
+        squares.add(new RegisterSquare(io));
+        squares.add(new ReferFriendSquare(io));
+        squares.add(new Square(io));
+        squares.add(new EducateYourselfSquare(io));
+        squares.add(new AcquireHardwareSquare(io));
+        squares.add(new InstallEndUserEquipmentSquare(io));
+        squares.add(new ConnectToNetworkSquare(io));
 
     }
 
-    public Game() throws FileNotFoundException {
-    }
 
     /**
      * The start of the game, this is where everything happens.
      */
-    public static void start() {
+    public void start() {
 
-        printMessage("locale");
-        if (readInput().equalsIgnoreCase("en")) {
-            currentLocale = setCurrentLocale(new String[]{"en", "US"});
-        }
+        // Create new player
+        player = new Player();
 
+        // Print greeting
         printMessage("greeting");
         printMessage("init_prompt");
-        if (Game.readYesNo()) {
+
+        if (io.readYesNo()) {
             printMessage("init_prompt1");
         }
         else {
             printMessage("leave_prompt");
             return;
         }
+
+        // Print out the board
+        printMessage("board_intro");
+        for(Square square: squares) {
+            printMessage(square.toString());  
+        }        
+        printMessage("\n");
+   
         squares.getFirst().run(player);
         do {
-            Square square = move(player.position, player.rollDice());
+            Square square = move(
+                player.position, 
+                player.rollDice(io)
+            );
+
             player.position = squares.indexOf(square);
-            square.run(player);
-            printMessage("square_num", squares.indexOf(square));
+            if (square.run(player)) {
+                printMessage("square_num", squares.indexOf(square));
+            } else {
+                // Check if player wants to leave game
+                printMessage("leave_game_prompt");
+                if (io.readYesNo()) {       
+                    endGame();
+                }
+            }
         } while (true);
     }
 
@@ -93,124 +109,24 @@ public class Game {
      * @param num the number of square to move forward
      * @return the square at position pos + num looping around the board or staringSquare if loops
      */
-    public static Square move(int pos, int num) {
+    public Square move(int pos, int num) {
         if (pos + num > squares.size()) {
             return startingSquare;
         }
         return squares.get( (pos + num) % squares.size() );
     }
 
-    /**
-     * After asking a yes/no question call this function to read input from the user.
-     * @return true means yes, false no
-     */
-    public static boolean readYesNo() {
-        String answer = readInput();
-        return answer.toLowerCase().startsWith(getMessage("read_yes_no"));
-    }
-
-    /**
-     * All input should be read from this function. It contains global level checks,
-     * for example "exit" that quits the game at any time.
-     * @return an unformatted string from the user
-     */
-    public static String readInput() {
-        String result = input.nextLine();
-        if (result.equalsIgnoreCase(getMessage("exit"))) {
-            Game.endGame();
-        }
-        return result;
+    private void printMessage(String key, Object... args) {
+        io.printLine(key, args);        
     }
 
     /**
      * Ends the game and the program with exit code 0
      */
-    public static void endGame() {
+    public void endGame() {
         printMessage("end_game");
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        io.closeLogFile();
         System.exit(0);
-    }
-
-    private static Locale currentLocale;
-    //private static ResourceBundle messages;
-
-    /**
-     * The start of the game, this is where everything happens.
-     */
-    public static void start(String[] args) {
-
-        // Set current locale
-        currentLocale = setCurrentLocale(args);
-
-        printMessage("greeting");
-        printMessage("init_prompt");
-
-        if (Game.readYesNo()) {
-            printMessage("init_prompt1");
-        }
-        else {
-            printMessage("leave_prompt");
-            return;
-        }
-
-        Square starting_square = move(0, player.rollDice());
-        starting_square.run(new Player());
-        printMessage("square_num", squares.indexOf(starting_square));
-    }
-
-    /**
-     * Sets the player's locale for the current game.
-     * @param  args  command line arguments including language and country
-     * @returns Locale returns the current player locale
-     * @see {@link <a href="https://docs.oracle.com/en/java/javase/22/intl/internationalization-overview.html"> </a>}
-     */
-    public static Locale setCurrentLocale(String[] args) {
-
-        // Set init locale
-        String language;
-        String country;
-
-        if (args.length != 2) {
-            language = "en";
-            country = "US";
-        } else {
-            language = args[0];
-            country = args[1];
-        }
-
-        // builder
-        return new Locale.Builder()
-                .setLanguage(language)
-                .setRegion(country)
-                .build();
-    }
-
-    /**
-     * A convenience method to print to the standard output the message
-     * Also writes all output to a log file.
-     *
-     * @param key the localization key
-     */
-    public static void printMessage(String key, Object... args) {
-        try {
-            fileWriter.append(String.format(getMessage(key) + "%n", args));
-            fileWriter.flush();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.printf(getMessage(key) + "%n", args);
-    }
-    /**
-     * Returns the localized resources for the current game.
-     * @return ResourceBundle returns resources for the current locale
-     */
-    public static String getMessage(String key) {
-        ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
-        return bundle.getString(key);
     }
 
 }
