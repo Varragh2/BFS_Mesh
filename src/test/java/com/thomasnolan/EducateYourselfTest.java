@@ -23,7 +23,7 @@ public class EducateYourselfTest {
 
 
     /**
-     * Tests if ConnectToNetworkSquare.run() works correctly
+     * Tests if EducateYourself.run() works correctly
      */
     @Test
     public void educateYourselfTest() {
