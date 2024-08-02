@@ -64,7 +64,8 @@ public class Player {
         int result = (int) (Math.random() * 10 % 6 + 1);
         io.printLine("player_roll_dice_success", result);
 
-        return 1;
+        return result;
+
     }
 
 }
